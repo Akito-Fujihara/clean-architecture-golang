@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: maindb
+      MYSQL_USER: todouser
+      MYSQL_PASSWORD: todopassword
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3306:3306
+
+  backend:
+    build:
+      context: .
+    container_name: backend
+    working_dir: /backend
+    environment:
+      MYSQL_DATABASE: main
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./:/backend
+    tty: true
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
