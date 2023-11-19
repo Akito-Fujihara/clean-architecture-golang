@@ -5,9 +5,9 @@ services:
     environment:
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: maindb
-      MYSQL_USER: todouser
-      MYSQL_PASSWORD: todopassword
+      MYSQL_DATABASE: main
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: password
       TZ: "Asia/Tokyo"
     volumes:
       - ./my.cnf:/etc/mysql/conf.d/my.cnf
